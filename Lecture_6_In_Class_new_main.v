@@ -11,7 +11,13 @@ Definition z : nat := 5.
 *)
 Theorem add_n_0 : forall x, x + 0 = x.
 Proof.
-Admitted.
+  intros.
+  induction x.
+  reflexivity.
+  simpl.
+  rewrite IHx.
+  reflexivity.
+Qed.
 
 Check 10 + 0 = 10.
 (* 
@@ -56,7 +62,7 @@ Definition P : Prop := (2 = 3).       (* P is a statement, not a computed boolea
 
 
 
-Check Nat.eqb.
+Check Nat.eqb. (*  return data type *)
 Locate Nat.eqb.
 
 Theorem is_correct:
@@ -204,6 +210,7 @@ Inductive l_or (P Q:Prop) : Prop :=
   Goal: Constructs a proof of `l_or (1 = 10) (0 = 0)`.
   - Demonstrates selecting the right side of the OR, since `0 = 0` is true.
 *)
+
 Goal
   l_or (1 = 10) (0 = 0).
 Proof.
@@ -279,7 +286,7 @@ Qed.
 Lemma or_example2 :
   forall n m : nat, n = 0 \/ m = 0 \/ n = 0 * m -> n * m = 0.
 Proof.
-  intros n m H.                            (* Introduce n, m, and H : n = 0 \/ m = 0 \/ n = 0 * m. *)
+ intros n m H.                            (* Introduce n, m, and H : n = 0 \/ m = 0 \/ n = 0 * m. *)
   destruct H as [Hn0 | [Hm0 | HnEq]].      (* Three cases:
                                               1) Hn0  : n = 0
                                               2) Hm0  : m = 0
@@ -303,7 +310,8 @@ Proof.
 
   - rewrite HnEq.                          (* Case 3: replace n with (0 * m), goal becomes (0 * m) * m = 0. *)
     simpl.                                 (* Simplify 0 * m to 0, then simplify 0 * m to 0. *)
-    reflexivity.                           (* Goal is 0 = 0. *)
+    reflexivity.      
+                       (* Goal is 0 = 0. *)
 Qed.
 
 
@@ -419,6 +427,11 @@ Proof.
      square x + square y = x * x + y * y
   *)
 
+
+(* expanding your function or definition to its   formula  (Yan Notes)*)
+
+
+
   unfold square.
   (* Unfold the definition of 'square' in the goal *)
   (* After unfolding, the goal becomes:
@@ -467,3 +480,6 @@ Qed.
 
 
 
+
+  
+  

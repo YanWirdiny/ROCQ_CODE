@@ -1,5 +1,11 @@
 Require Import Coq.Lists.List.   (* Import the List library *)
 
+(* Yan Note 
+Use Locate to find a  proof  already set to find it.
+*)
+
+
+
 
 (* 
   Description of `contradiction`:
@@ -527,5 +533,5 @@ Proof.
     reflexivity.
 Qed.
 
-(* 
+
 
